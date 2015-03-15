@@ -4,7 +4,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 
 app.get('/', function(req, res){
-  res.sendfile('./views/index.html');
+  res.sendFile('views/index.html', {"root": __dirname});
 });
 
 var server = app.listen(app.get('port'), function() {
