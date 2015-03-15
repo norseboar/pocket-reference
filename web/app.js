@@ -4,8 +4,8 @@ var hbs = require('hbs');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.set('view engine', 'html');
-app.engine('html', hbs.__express);
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs.__express);
 
 app.get('/', function(req, res){
   res.render('index');
