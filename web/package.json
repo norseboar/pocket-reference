@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/norseboar/pocket-reference",
   "dependencies": {
-    "express": "^4.12.2"
+    "express": "^4.12.2",
+    "hbs": "^3.0.1"
   },
   "engines": {
     "node": "0.12.x",
