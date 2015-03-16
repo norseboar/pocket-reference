@@ -1,8 +1,13 @@
 var path = require('path');
 var express = require('express');
 var hbs = require('express-hbs');
+var mongo = require('mongodb');
+var monk = require('monk');
 
 var routes = require('./routes/index');
+
+// Only for use in localhost environment
+// var db = monk('localhost:27017/pocket-reference');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -14,6 +19,12 @@ app.engine('hbs', hbs.express4({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Enable MongoDB
+// Every request is probably overkill, this is a rough solution
+// app.use(function(req, res, next){
+//   req.db = db;
+//   next();
+// });
 app.use('/', routes);
 
 // Catch 404 and forwarding to error handler
