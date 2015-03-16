@@ -1,7 +1,8 @@
 var path = require('path');
 var express = require('express');
 var hbs = require('express-hbs');
-var data = require('./data');
+
+var routes = require('./routes/index');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -13,15 +14,14 @@ app.engine('hbs', hbs.express4({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Catch 404 and forwarding to error handler
-// TODO: add other 'use' statements so that good paths are caught first. This
-// one should act as a catch-all  for other paths
+app.use('/', routes);
 
-// app.use(function(req, res, next){
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err)
-// });
+// Catch 404 and forwarding to error handler
+app.use(function(req, res, next){
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err)
+});
 
 // Error handlers
 if (app.get('env') === 'development'){
@@ -43,10 +43,6 @@ app.use(function(err, req, res, next){
 });
 
 module.exports = app;
-
-app.get('/', function(req, res){
-  res.render('index', {claims: data.getClaims});
-});
 
 var server = app.listen(app.get('port'), function() {
   var host = server.address().address;
