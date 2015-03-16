@@ -27,6 +27,8 @@
   "dependencies": {
     "express": "^4.12.2",
     "express-hbs": "^0.8.2",
+    "mongodb": "^1.4.34",
+    "monk": "^1.0.0"
   },
   "engines": {
     "node": "0.12.x",
