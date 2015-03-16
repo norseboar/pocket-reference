@@ -1,4 +1,6 @@
-.main-frame {
-  background-color: #BFBFBF;
-  height: 50em;
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
 }

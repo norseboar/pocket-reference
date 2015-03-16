@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pocket Reference</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -12,12 +13,13 @@
     <div class="page-header">
       <h1>Pocket Reference</h1>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-3"><p>thing1</p></div>
-        <div class="col-xs-6 main-frame"><p>thing2</p></div>
-        <div class="col-xs-3"><p>thing3</p></div>
-      </div>
+    <div class="container main">
+      <ul class="list-group">
+        {{#each claims}}
+          <li class="list-group-item">
+            <a href="{{source}}" target="_blank">{{title}}</a>
+          </li>
+        {{/each}}
     </div>
   </body>
 </html>
