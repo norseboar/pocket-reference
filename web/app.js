@@ -4,10 +4,10 @@ var hbs = require('express-hbs');
 var mongo = require('mongodb');
 var monk = require('monk');
 
-var routes = require('./routes/index');
+var routes = require(path.join(__dirname, 'routes/index'));
 
-// Only for use in localhost environment
-var db = monk('localhost:27017/pocket-reference');
+console.log(process.env.MONGOLAB_URI);
+var db = monk(process.env.MONGOLAB_URI);
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
