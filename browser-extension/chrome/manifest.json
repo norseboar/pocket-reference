@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Pocket Reference",
+  "version": "0.1.0",
+
+  "permissions": [
+    "contextMenus"
+  ],
+
+  "default_locale": "en",
+  "description": "Save facts you read to Pocket Reference",
+  "icons": {},
+
+  "browser_action": {
+    "default_title": "Save to Pocket Reference",
+    "default_popup": "popup.html"
+  },
+  "author": "Reed Molbak",
+  "background": {
+    "persistent": false
+  },
+
+  "short_name": "Pocket Ref"
+}
