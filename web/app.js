@@ -6,6 +6,7 @@ var monk = require('monk');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 // configuration ==============================================================
 var app = express();
