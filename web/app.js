@@ -4,7 +4,7 @@ var hbs = require('express-hbs');
 var mongo = require('mongodb');
 var monk = require('monk');
 
-var routes = require(path.join(__dirname, 'routes/index'));
+var routes = require(path.join(__dirname, 'routes'));
 
 console.log(process.env.MONGOLAB_URI);
 var db = monk(process.env.MONGOLAB_URI);
