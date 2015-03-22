@@ -17,7 +17,8 @@
   },
   "author": "Reed Molbak",
   "background": {
-    "persistent": false
+    "persistent": false,
+    "scripts": "background.js"
   },
 
   "short_name": "Pocket Ref"
