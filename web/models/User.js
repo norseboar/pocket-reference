@@ -12,7 +12,7 @@ var userSchema = new Schema ({
 
 // methods ====================================================================
 userSchema.methods.generateHash = function(password){
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
 userSchema.methods.validPassword = function(password){
