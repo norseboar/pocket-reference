@@ -44,6 +44,11 @@ module.exports = function (passport){
   });
 
   // process login form
+  router.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/=',
+    failureRedirect: '/login',
+    failureFlash: true
+  }));
 
   // REGISTER ===================================================================
   router.get('/register', function(req, res){

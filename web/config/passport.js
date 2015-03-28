@@ -33,7 +33,6 @@ module.exports = function(passport) {
                                 // callback
       },
       function(req, email, password, done){
-        console.log('in passport handler');
         // process.nextTick is used to allow for any async operations
         // LocalStrategy might have, esp since calls to database are all async
         process.nextTick(function(){
@@ -51,7 +50,6 @@ module.exports = function(passport) {
               newUser.local.email = email;
               newUser.local.password = newUser.generateHash(password);
 
-              console.log("about to save");
               newUser.save(function(err){
                 if(err){
                   throw err;
@@ -63,5 +61,36 @@ module.exports = function(passport) {
         });
       }
     )
+  );
+
+  // local login ==============================================================
+  passport.use(
+    'local-login',
+    new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+    },
+    function (req, email, password, done){
+      // find a user whose email matches the one passed in
+      User.findOne({'local.email': email}, function(err, user){
+        if(err){
+          return done(err);
+        }
+        // if no user is found, return an error message
+        if(!user){
+          return done(null, false, req.flash('loginMessage',
+            'No user found.'));
+        }
+
+        // if user is found but password is wrong, different message
+        if(!user.validPassword(password)){
+          return done(null, false, req.flash('loginMessage',
+            'Invalid password'));
+        }
+
+        return done(null, user);
+      });
+    })
   );
 };
