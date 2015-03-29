@@ -3,7 +3,6 @@
 var path = require('path');
 var express = require('express');
 var hbs = require('express-hbs');
-var mongo = require('mongodb');
 var monk = require('monk');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
