@@ -18,7 +18,8 @@ module.exports = function (passport){
 
   // HOME PAGE ==================================================================
   router.get('/', function(req, res){
-    if(false){
+    if(req.isAuthenticated()){
+      res.redirect('/=');
     }
     else {
       // If user is not logged in, show landing page
