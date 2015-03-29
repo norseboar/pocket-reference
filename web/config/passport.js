@@ -1,3 +1,4 @@
+"use strict"
 // load required modules
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
