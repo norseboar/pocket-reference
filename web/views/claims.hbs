@@ -14,9 +14,9 @@
     <button type="submit" class="btn btn-warning btn-md">Add</button>
   </form>
   <ul class="list-group">
-    {{#each claims}}
+    {{#each user.claims}}
       <li class="list-group-item">
-        <a href="{{source}}" target="_blank">{{title}}</a>
+        <a href="{{url}}" target="_blank">{{title}}</a>
       </li>
     {{/each}}
 </div>

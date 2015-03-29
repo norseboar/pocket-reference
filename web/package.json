@@ -33,7 +33,6 @@
     "express-hbs": "^0.8.2",
     "express-session": "^1.10.4",
     "mongoose": "^4.0.1",
-    "monk": "^1.0.0",
     "morgan": "^1.5.2",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0"

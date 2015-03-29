@@ -3,7 +3,6 @@
 var path = require('path');
 var express = require('express');
 var hbs = require('express-hbs');
-var monk = require('monk');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -27,11 +26,6 @@ app.engine('hbs', hbs.express4({
 // Connect to MongoDB
 // Every request is probably overkill, this is a rough solution
 mongoose.connect(process.env.MONGOLAB_URI);
-var db = monk(process.env.MONGOLAB_URI);
-app.use(function(req, res, next){
-  req.db = db;
-  next();
-});
 
 // set up passport
 var passportConfig = require(path.join(__dirname, 'config/passport'));

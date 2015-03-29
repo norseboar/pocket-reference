@@ -34,12 +34,8 @@ module.exports = function (passport){
   // CLAIMS PAGE (default for logged in users)
   router.get('/=', isLoggedIn, function(req, res){
     // If user is logged in, show their claims
-    var db = req.db;
-    var collection = db.get('claimscollection');
-    collection.find({},function(e, docs){
-      res.render('claims', {claims: docs, user: req.user})
-    });
-  })
+    res.render('claims', {user: req.user})
+  });
 
   // LOGIN ====================================================================
   // show login form
