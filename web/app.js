@@ -36,7 +36,11 @@ app.use(function(req, res, next){
 // set up passport
 var passportConfig = require(path.join(__dirname, 'config/passport'));
 passportConfig(passport);
-app.use(session({secret: 'test_secret'}));
+app.use(session({
+  secret: 'test_secret',
+  resave: false,
+  saveUninitialized: false
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 
