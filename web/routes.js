@@ -71,6 +71,7 @@ module.exports = function (passport){
     res.redirect('/');
   });
 
+  // REST APIS ================================================================
   // API TO ADD/REMOVE CLAIMS
   router.post('/api/add_claim', function(req, res){
     console.log('in add claim');
