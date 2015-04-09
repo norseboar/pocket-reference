@@ -4,10 +4,10 @@
   "version": "0.1.0",
 
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "https://pocket-reference.herokuapp.com/"
   ],
 
-  "default_locale": "en",
   "description": "Save facts you read to Pocket Reference",
   "icons": {},
 
@@ -18,7 +18,7 @@
   "author": "Reed Molbak",
   "background": {
     "persistent": false,
-    "scripts": "background.js"
+    "scripts": ["background.js"]
   },
 
   "short_name": "Pocket Ref"
