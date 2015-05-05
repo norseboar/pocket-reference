@@ -3,6 +3,10 @@
 var express = require('express');
 var router = express.Router(); // despite being upper-case, express.Router()
                                // does /not/ need new
+var path = require('path');
+var User = require(path.join(__dirname, '/models/user'));
+var Claim = require(path.join(__dirname, '/models/claim'));
+
 
 module.exports = function (passport){
   // Authentication logic
@@ -16,9 +20,10 @@ module.exports = function (passport){
   };
 
 
-  // HOME PAGE ==================================================================
+  // HOME PAGE ================================================================
   router.get('/', function(req, res){
-    if(false){
+    if(req.isAuthenticated()){
+      res.redirect('/=');
     }
     else {
       // If user is not logged in, show landing page
@@ -29,14 +34,10 @@ module.exports = function (passport){
   // CLAIMS PAGE (default for logged in users)
   router.get('/=', isLoggedIn, function(req, res){
     // If user is logged in, show their claims
-    var db = req.db;
-    var collection = db.get('claimscollection');
-    collection.find({},function(e, docs){
-      res.render('claims', {claims: docs, user: req.user})
-    });
-  })
+    res.render('claims', {user: req.user})
+  });
 
-  // LOGIN ======================================================================
+  // LOGIN ====================================================================
   // show login form
   router.get('/login', function(req, res){
     // render, passing in any flash data (if it exists)
@@ -50,7 +51,7 @@ module.exports = function (passport){
     failureFlash: true
   }));
 
-  // REGISTER ===================================================================
+  // REGISTER =================================================================
   router.get('/register', function(req, res){
     // render, passing in any flash data (if it exists)
     res.render('register', {message: req.flash('registerMessage')});
@@ -64,10 +65,48 @@ module.exports = function (passport){
     failureFlash: true // allow flash messages
   }));
 
-  // LOGOUT =====================================================================
+  // LOGOUT ===================================================================
   router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
+  });
+
+  // REST APIS ================================================================
+  // API TO ADD/REMOVE CLAIMS
+  router.post('/api/add_claim', function(req, res){
+    console.log('in add claim');
+    if(req.isAuthenticated()){
+      console.log('authenticated');
+      var claim = new Claim();
+      claim.title = req.body.title;
+      claim.description = req.body.description;
+      claim.url = req.body.url;
+      claim.image = req.body.image;
+
+      console.log('claim created');
+      var user = req.user;
+
+      if(!user.claims){
+        console.log('creating claims array');
+        user.claims = [];
+      }
+      user.claims.push(claim);
+      console.log('about to save');
+      user.save(function(err){
+        if(err){
+          console.log('error');
+          res.send(err);
+        }
+        else {
+          console.log('claim added');
+          res.json({ message: 'claim added' })
+        }
+      });
+    }
+    else {
+      console.log('unauthenticated server')
+      // TODO: Send back unauthenticated error
+    }
   });
 
   return router;
