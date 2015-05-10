@@ -1,6 +1,7 @@
 "use strict"
 // Wait for login page to render before doing anything
 document.addEventListener("DOMContentLoaded", function(){
+  var POCKET_REFERENCE_URL = 'http://localhost:3000'
   var postObject = function(xhr, url, obj) {
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
   xhr.ontimeout = function() {
     showLogin();
   };
-  postObject(xhr, 'http://localhost:3000/api/login', {});
+  postObject(xhr, POCKET_REFERENCE_URL + '/api/login', {});
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
       email: document.querySelector('[name=email]').value,
       password: document.querySelector('[name=password]').value
     };
-    postObject(xhr, 'http://localhost:3000/api/login', credentials);
+    postObject(xhr, POCKET_REFERENCE_URL + '/api/login', credentials);
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4 && xhr.status === 200){
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
       title: document.getElementById('title').value,
       url: document.getElementById('url').value
     };
-    postObject(xhr, 'http://localhost:3000/api/add_claim', claim);
+    postObject(xhr, POCKET_REFERENCE_URL + '/api/add_claim', claim);
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
