@@ -58,9 +58,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
   document.getElementById('add-button').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
+    var titleElem = document.getElementById('title');
+    var urlElem = document.getElementById('url');
     var claim = {
-      title: document.getElementById('title').value,
-      url: document.getElementById('url').value
+      title: titleElem.value,
+      url: urlElem.value
     };
     postObject(xhr, POCKET_REFERENCE_URL + '/api/add_claim', claim);
     xhr.onreadystatechange = function() {
@@ -69,6 +71,10 @@ document.addEventListener("DOMContentLoaded", function(){
         if(response.status === 1) {
           // TODO: error message that it didn't go through
           showLogin();
+        }
+        if(response.status === 0) {
+          titleElem.value = '';
+          urlElem.value = '';
         }
       }
     };
