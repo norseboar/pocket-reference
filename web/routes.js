@@ -75,11 +75,29 @@ module.exports = function (passport){
   // API TO ADD/REMOVE CLAIMS
   router.post('/api/add_claim', function(req, res){
     if(req.isAuthenticated()){
+      var title = req.body.title;
+      var description = req.body.description;
+      var url = req.body.url;
+      var image = req.body.image;
+
+      if(!title || !url) {
+        console.log('about to return and ignore');
+        res.json({status: 2, message: 'invalid claim'});
+        return;
+      }
+
+      // http will be added to url if there is no header
+      var re = /^[A-Za-z]+:\/\//;
+      if(!url.match(re)) {
+        url = 'http://' + url;
+      }
+
+
       var claim = new Claim();
-      claim.title = req.body.title;
-      claim.description = req.body.description;
-      claim.url = req.body.url;
-      claim.image = req.body.image;
+      claim.title = title;
+      claim.description = description;
+      claim.url = url;
+      claim.image = image;
 
       var user = req.user;
 

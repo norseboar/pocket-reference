@@ -1,18 +1,20 @@
+<script src="scripts/claims.js" defer></script>
 <div class="container main">
   <div class="page-header text-right">
     <a href="/logout" class="btn btn-default btn-sm">Logout</a>
   </div>
-  <form action="/api/add_claim" method="post">
-    <div class="form-group">
-      <label>Title</title>
-      <input type="text" class="form-control" name="title">
-    </div>
-    <div class="form-group">
-      <label>url</label>
-      <input type="text" class="form-control" name="url">
-    </div>
-    <button type="submit" class="btn btn-warning btn-md">Add</button>
-  </form>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" >
+  </div>
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input type="text" class="form-control" id="url">
+  </div>
+  <button type="submit" class="btn btn-warning btn-md" id="add-claim">
+      Add</button>
+  <br/>
+  <br/>
   <ul class="list-group">
     {{#each user.claims}}
       <li class="list-group-item">
