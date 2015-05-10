@@ -5,7 +5,8 @@
 
   "permissions": [
     "contextMenus",
-    "https://pocket-reference.herokuapp.com/"
+    "https://pocket-reference.herokuapp.com/",
+    "http://localhost/"
   ],
 
   "description": "Save facts you read to Pocket Reference",

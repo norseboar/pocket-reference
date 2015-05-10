@@ -89,7 +89,7 @@ module.exports = function(passport) {
           return done(null, false, req.flash('loginMessage',
             'Invalid password'));
         }
-
+        req.flash('loginMessage', 'Logged in');
         return done(null, user);
       });
     })

@@ -104,9 +104,15 @@ module.exports = function (passport){
       });
     }
     else {
-      console.log('unauthenticated server')
+      console.log('unauthenticated user')
       // TODO: Send back unauthenticated error
     }
+  });
+
+  router.post('/api/login', passport.authenticate('local-login', {
+    failureFlash: true
+  }), function(req, res) {
+    res.json({message: req.flash('loginMessage')})
   });
 
   return router;

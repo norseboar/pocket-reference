@@ -67,14 +67,6 @@ if (app.get('env') === 'development'){
   });
 }
 
-app.use(function(err, req, res, next){
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
 module.exports = app;
 
 // launch =====================================================================
@@ -82,5 +74,6 @@ var server = app.listen(app.get('port'), function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Example app listening at http://localhost:%s', port);
+  console.log('Pocket Reference server listening at' +
+      'http://localhost:%s', port);
 });
