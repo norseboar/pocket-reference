@@ -1,7 +1,7 @@
 "use strict"
 // Wait for login page to render before doing anything
 document.addEventListener("DOMContentLoaded", function(){
-  var POCKET_REFERENCE_URL = 'http://localhost:3000'
+  var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
   var postObject = function(xhr, url, obj) {
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
