@@ -1,0 +1,15 @@
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bin\Debug\ReverseMap\resources.pri
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bin\Debug\AppxManifest.xml
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bin\Debug\windows_universal.Windows.build.appxrecipe
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\priconfig.xml
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\priconfig.xml.intermediate
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\layout.resfiles
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\layout.resfiles.intermediate
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\resources.resfiles
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\resources.resfiles.intermediate
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\pri.resfiles
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\pri.resfiles.intermediate
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\qualifiers.txt
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\qualifiers.txt.intermediate
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\MultipleQualifiersPerDimensionFound.txt
+E:\SkyDrive\GitHub\pocket-reference\app\windows-universal\windows-universal\windows_universal.Windows\bld\Debug\ProjectArchitectures.txt
