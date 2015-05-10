@@ -20,7 +20,12 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   // Check if user already has a session cookies
+  // Timeout after a second, and just show them login page
   var xhr = new XMLHttpRequest();
+  xhr.timeout = 1000;
+  xhr.ontimeout = function() {
+    showLogin();
+  };
   postObject(xhr, 'http://localhost:3000/api/login', {});
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200) {
