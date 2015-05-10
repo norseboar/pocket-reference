@@ -74,44 +74,51 @@ module.exports = function (passport){
   // REST APIS ================================================================
   // API TO ADD/REMOVE CLAIMS
   router.post('/api/add_claim', function(req, res){
-    console.log('in add claim');
     if(req.isAuthenticated()){
-      console.log('authenticated');
       var claim = new Claim();
       claim.title = req.body.title;
       claim.description = req.body.description;
       claim.url = req.body.url;
       claim.image = req.body.image;
 
-      console.log('claim created');
       var user = req.user;
 
       if(!user.claims){
-        console.log('creating claims array');
         user.claims = [];
       }
       user.claims.push(claim);
-      console.log('about to save');
       user.save(function(err){
         if(err){
-          console.log('error');
           res.send(err);
         }
         else {
-          console.log('claim added');
-          res.json({ message: 'claim added' })
+          res.json({status: 0, message: 'claim added'})
         }
       });
     }
     else {
-      console.log('unauthenticated user')
-      // TODO: Send back unauthenticated error
+      res.json({status: 1, message: 'access denied: not authenticated'});
     }
   });
 
-  router.post('/api/login', passport.authenticate('local-login', {
+  // Login to pocket reference (will provide an authenticated session cookie)
+  router.post('/api/login', function(req, res, next) {
+    // If user already has a token, let them in
+    if(req.isAuthenticated()) {
+      res.json({status: 0, message: 'already authenticated'});
+    } else {
+      // Make sure user actually provided credentials
+      if(!req.body.email || !req.body.password) {
+        res.json({status: 1, message: 'access denied: no credentials'});
+      }
+      else {
+        return next();
+      }
+    }
+  }, passport.authenticate('local-login', {
     failureFlash: true
   }), function(req, res) {
+    console.log('finished');
     res.json({message: req.flash('loginMessage')})
   });
 

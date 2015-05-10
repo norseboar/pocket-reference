@@ -31,10 +31,13 @@ mongoose.connect(process.env.MONGOLAB_URI);
 var passportConfig = require(path.join(__dirname, 'config/passport'));
 passportConfig(passport);
 app.use(session({
-  secret: 'test_secret',
+  name: 'pocket-ref.connect.sid',
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
-  }));
+  saveUninitialized: false,
+  // Cookie does not need to be secure if in dev environment
+  cookie: { secure: app.get('env') === 'development' ? false : true }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
