@@ -67,14 +67,12 @@ document.addEventListener("DOMContentLoaded", function(){
     postObject(xhr, POCKET_REFERENCE_URL + '/api/add_claim', claim);
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4 && xhr.status === 200) {
+        titleElem.value = '';
+        urlElem.value = '';
         var response = JSON.parse(xhr.responseText);
         if(response.status === 1) {
           // TODO: error message that it didn't go through
           showLogin();
-        }
-        if(response.status === 0) {
-          titleElem.value = '';
-          urlElem.value = '';
         }
       }
     };
