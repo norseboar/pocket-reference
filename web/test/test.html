@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pocket Reference</title>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="../public/scripts/react-0.11.2/build/react.min.js"></script>
+    <script src="../public/scripts/react-0.11.2/build/JSXTransformer.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header clearfix">
+        <h2 class="text-muted pull-left">Pocket Reference</h1>
+        <ul class="nav nav-pills pull-right" role="navigation">
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </div>
+      <div id="mount-point"></div>
+      <script type="text/jsx">
+        /** @jsx React.DOM */
+        var myComponent = React.createClass({
+          render: function() {
+            return (
+              <h1>Hello, world!</h1>
+            );
+          }
+        });
+        React.renderComponent(
+          <myComponent/>,
+          document.getElementById('mount-point')
+        );
+      </script>
+    </div>
+  </body>
+</html>
