@@ -27,21 +27,21 @@ module.exports = function (passport){
     }
     else {
       // If user is not logged in, show landing page
-      res.render('index');
+      res.render('index', {loggedIn: false});
     }
   });
 
   // CLAIMS PAGE (default for logged in users)
   router.get('/=', isLoggedIn, function(req, res){
     // If user is logged in, show their claims
-    res.render('claims', {user: req.user})
+    res.render('claims', {user: req.user, loggedIn: true})
   });
 
   // LOGIN ====================================================================
   // show login form
   router.get('/login', function(req, res){
     // render, passing in any flash data (if it exists)
-    res.render('login', { message: req.flash('loginMessage')});
+    res.render('login', {message: req.flash('loginMessage'), loggedIn: false});
   });
 
   // process login form
@@ -54,7 +54,8 @@ module.exports = function (passport){
   // REGISTER =================================================================
   router.get('/register', function(req, res){
     // render, passing in any flash data (if it exists)
-    res.render('register', {message: req.flash('registerMessage')});
+    res.render('register', {message: req.flash('registerMessage'),
+        loggedIn: false});
   });
 
   // process registration form

@@ -10,6 +10,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var io = require('socket.io');
 
 // configuration ==============================================================
 var app = express();
@@ -80,3 +81,5 @@ var server = app.listen(app.get('port'), function() {
   console.log('Pocket Reference server listening at' +
       'http://localhost:%s', port);
 });
+
+io.listen(server);

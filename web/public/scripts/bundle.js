@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module 'bluebird' from 'E:\\SkyDrive\\GitHub\\pocket-reference\\web\\node_modules\\express-session\\node_modules\\uid-safe\\node_modules\\native-or-bluebird'")

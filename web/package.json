@@ -4,7 +4,9 @@
   "description": "Recall the source of every fact you come across",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "browserify": "browserify app.js | uglify-js > public/js/bundle.js",
+    "build": "npm run browserify",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,11 +36,26 @@
     "express-session": "^1.10.4",
     "mongoose": "^4.0.1",
     "morgan": "^1.5.2",
+    "node-jsx": "~0.11.0",
     "passport": "^0.2.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react": "~0.11.2",
+    "socket.io": "^1.1.0"
+  },
+  "devDependencies": {
+    "browserify": "~6.0.3",
+    "nodemon": "^1.2.1",
+    "reactify": "~0.14.0",
+    "uglify-js": "~2.4.15",
+    "watchify": "~2.0.0"
   },
   "engines": {
     "node": "0.12.x",
     "npm": "2.7.x"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }
