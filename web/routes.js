@@ -45,7 +45,16 @@ module.exports = function (passport){
   });
 
   // process login form
-  router.post('/login', passport.authenticate('local-login', {
+  router.post('/login', function(req, res, next) {
+    console.log(req.body);
+
+    if(req.body['remember-me'] === 'on') {
+      console.log('remembering');
+      req.session.cookie.expires = new Date(Date.now() +
+          2592000); // Thirty days worth of seconds
+    }
+    return next();
+  }, passport.authenticate('local-login', {
     successRedirect: '/=',
     failureRedirect: '/login',
     failureFlash: true
@@ -131,6 +140,11 @@ module.exports = function (passport){
         res.json({status: 1, message: 'access denied: no credentials'});
       }
       else {
+        // Check if the user would like the cookie to be long-lived
+        if(req.body.rememberMe) {
+          req.session.cookie.expires = new Date(Date.now() +
+              2592000); // Thirty days worth of seconds
+        }
         return next();
       }
     }

@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function(){
     var xhr = new XMLHttpRequest();
     var credentials = {
       email: document.querySelector('[name=email]').value,
-      password: document.querySelector('[name=password]').value
+      password: document.querySelector('[name=password]').value,
+      rememberMe: document.querySelector('[name=remember-me]').checked
     };
     postObject(xhr, POCKET_REFERENCE_URL + '/api/login', credentials);
 
