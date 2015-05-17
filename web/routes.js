@@ -46,10 +46,8 @@ module.exports = function (passport){
 
   // process login form
   router.post('/login', function(req, res, next) {
-    console.log(req.body);
 
     if(req.body['remember-me'] === 'on') {
-      console.log('remembering');
       req.session.cookie.expires = new Date(Date.now() +
           2592000); // Thirty days worth of seconds
     }
