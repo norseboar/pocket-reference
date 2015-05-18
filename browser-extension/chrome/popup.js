@@ -1,7 +1,8 @@
 "use strict"
 // Wait for login page to render before doing anything
 document.addEventListener("DOMContentLoaded", function(){
-  var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
+  var POCKET_REFERENCE_URL = 'http://localhost:3000';
+    // var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
   var postObject = function(xhr, url, obj) {
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
@@ -59,23 +60,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
   document.getElementById('add-button').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    var titleElem = document.getElementById('title');
-    var urlElem = document.getElementById('url');
-    var claim = {
-      title: titleElem.value,
-      url: urlElem.value
-    };
-    postObject(xhr, POCKET_REFERENCE_URL + '/api/add_claim', claim);
-    xhr.onreadystatechange = function() {
-      if(xhr.readyState === 4 && xhr.status === 200) {
-        titleElem.value = '';
-        urlElem.value = '';
-        var response = JSON.parse(xhr.responseText);
-        if(response.status === 1) {
-          // TODO: error message that it didn't go through
-          showLogin();
+    var titleElem = document.getElementById('claimText');
+
+    // get URL of current tab
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+      var claim = {
+        title: titleElem.value,
+        url: tabs[0].url
+      };
+      postObject(xhr, POCKET_REFERENCE_URL + '/api/add_claim', claim);
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+          titleElem.value = '';
+          var response = JSON.parse(xhr.responseText);
+          if(response.status === 1) {
+            // TODO: error message that it didn't go through
+            showLogin();
+          }
         }
-      }
-    };
+      };
+    });
   });
 });

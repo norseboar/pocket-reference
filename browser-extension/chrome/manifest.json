@@ -6,6 +6,7 @@
   "permissions": [
     "contextMenus",
     "notifications",
+    "tabs",
     "https://pocket-reference.herokuapp.com/",
     "http://localhost/"
   ],

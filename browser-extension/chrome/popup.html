@@ -1,44 +1,50 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="yeti-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+
     <script src="popup.js" defer></script>
   </head>
   <body>
+    <nav class="navbar navbar-inverse">
+      <a class="navbar-brand" href="https://pocket-reference.herokuapp.com">
+        Pocket Reference
+      </a>
+    </nav>
+    <div class="container">
+      <div id="login" style="display:none;">
+        <div>
+          <label>Email</label>
+          <input type="text" class="form-control" name="email" maxlength="100">
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" class="form-control" name="password"
+              maxlength = "100">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="remember-me">Remember me
+          </label>
+        </div>
+        <button id="login-button" class="btn btn-warning btn-md">Login</button>
 
-    <div id="login" style="display:none;">
-      <h1>Login</h1>
-      <div>
-        <label>Email</label>
-        <input type="text" name="email">
+        <hr/>
+        <p class="small">Don't have an account?
+          <a href="https://pocket-reference.herokuapp.com">Register</a>
+        </p>
       </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password">
+      <div id="add" style="display: none;">
+        <div>
+          <label>Claim</label>
+          <input type="text" class="form-control" id="claimText"
+              maxlength="150">
+        </div>
+        <button class="btn btn-md btn-warning" id="add-button">
+          Add this page to Pocket Reference
+        </button>
       </div>
-      <div>
-        <label>
-          <input type="checkbox" name="remember-me">Remember me
-        </label>
-      </div>
-      <br/>
-      <button id="login-button">Login</button>
-
-      <hr>
-
-      <p>Don't have an account?
-        <a href="https://pocket-reference.herokuapp.com">Register</a>
-    </div>
-    <div id="add" style="display: none;">
-      <h1>Add a claim</h1>
-      <div>
-        <label>Title</label>
-        <input type="text" name="title" id="title">
-      </div>
-      <div>
-        <label>url</label>
-        <input type="text" name="url" id="url">
-      </div>
-      <button id="add-button">Add to Pocket Reference</button>
     </div>
   </body>
 </html>
