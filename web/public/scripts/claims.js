@@ -2,6 +2,7 @@
 
 (function($){
   var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
+
   document.getElementById('add-claim').addEventListener('click',
       function() {
     var xhr = new XMLHttpRequest();

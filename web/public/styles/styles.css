@@ -11,12 +11,20 @@ body {
   border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
-  height: 120px;
+  height: 130px;
+}
+
+.page-title p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .claim-text p {
   font-family: 'Raleway';
   font-weight: 800;
+  height: 65px;
+  overflow: hidden;
 }
 a:hover.claim-link {
   text-decoration: none;
