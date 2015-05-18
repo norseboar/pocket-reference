@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var claimSchema = new Schema ({
-  title: String,
-  description: String,
+  claimText: String,
+  pageTitle: String,
   url: String,
-  image: String
+  imgSrc: String
 });
 
 // methods ====================================================================

@@ -3,7 +3,11 @@
 var express = require('express');
 var router = express.Router(); // despite being upper-case, express.Router()
                                // does /not/ need new
+var request = require('request');
+var cheerio = require('cheerio');
 var path = require('path');
+var url = require('url');
+
 var User = require(path.join(__dirname, '/models/user'));
 var Claim = require(path.join(__dirname, '/models/claim'));
 
@@ -83,43 +87,57 @@ module.exports = function (passport){
   // API TO ADD/REMOVE CLAIMS
   router.post('/api/add_claim', function(req, res){
     if(req.isAuthenticated()){
-      var title = req.body.title;
-      var description = req.body.description;
-      var url = req.body.url;
-      var image = req.body.image;
+      var claimText = req.body.title;
+      var claimUrl = req.body.url;
+      var parsedUrl = url.parse(claimUrl);
 
-      if(!title || !url) {
-        console.log('about to return and ignore');
-        res.json({status: 2, message: 'invalid claim'});
-        return;
-      }
+      // Grab favicon of webpage as image
+      var faviconPrefix = 'http://www.google.com/s2/favicons?domain=';
+      var imgSrc = faviconPrefix + parsedUrl.hostname;
 
-      // http will be added to url if there is no header
-      var re = /^[A-Za-z]+:\/\//;
-      if(!url.match(re)) {
-        url = 'http://' + url;
-      }
-
-
-      var claim = new Claim();
-      claim.title = title;
-      claim.description = description;
-      claim.url = url;
-      claim.image = image;
-
-      var user = req.user;
-
-      if(!user.claims){
-        user.claims = [];
-      }
-      user.claims.push(claim);
-      user.save(function(err){
-        if(err){
-          res.send(err);
+      // get title of web page
+      // 'page' is used as a prefix to not be confused with overall
+      // req and res objects
+      request({
+        url: url.parse(claimUrl),
+        jar: true
+      }, function(pageErr, pageRes, pageBody) {
+        var pageParser = cheerio.load(pageBody);
+        var pageTitle = pageParser('title').text();
+        console.log('pageTitle is ' + pageTitle);
+        if(!claimText || !claimUrl) {
+          console.log('about to return and ignore');
+          res.json({status: 2, message: 'invalid claim'});
+          return;
         }
-        else {
-          res.json({status: 0, message: 'claim added'})
+
+        // http will be added to url if there is no header
+        var re = /^[A-Za-z]+:\/\//;
+        if(!claimUrl.match(re)) {
+          claimUrl = 'http://' + claimUrl;
         }
+
+
+        var claim = new Claim();
+        claim.claimText = claimText;
+        claim.pageTitle = pageTitle;
+        claim.url = claimUrl;
+        claim.imgSrc = imgSrc;
+
+        var user = req.user;
+
+        if(!user.claims){
+          user.claims = [];
+        }
+        user.claims.push(claim);
+        user.save(function(err){
+          if(err){
+            res.send(err);
+          }
+          else {
+            res.json({status: 0, message: 'claim added'})
+          }
+        });
       });
     }
     else {

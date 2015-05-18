@@ -1,3 +1,23 @@
 body {
-  background-color: #ECECEC;
+  /*
+  Very light gray
+  background-color: #ECECEC;*/
+  /* Alice Blue */
+  background-color: #E4F1FE;
+}
+
+.claim {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  height: 120px;
+}
+
+.claim-text p {
+  font-family: 'Raleway';
+  font-weight: 800;
+}
+a:hover.claim-link {
+  text-decoration: none;
 }
