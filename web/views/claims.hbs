@@ -15,19 +15,17 @@
   <!-- <ul class="list-group"> -->
     {{#each user.claims}}
       <!-- <li class="list-group-item"> -->
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
           <a class="claim-link" href="{{url}}" target="_blank">
             <div class="claim">
               <span class="claim-text"><p>{{claimText}}</p></span>
-              <p>
-                <img src="{{imgSrc}}">
-                <span class="page-title">{{pageTitle}}</span>
-              </p>
+              <div class="page-title">
+                <p>
+                  <img src="{{imgSrc}}">{{pageTitle}}
+                </p>
+              </div>
             </div>
           </a>
         </div>
-        <!-- <a href="{{url}}" target="_blank">{{title}}</a> -->
-      <!-- </li> -->
-    <!-- </ul> -->
     {{/each}}
 </div>
