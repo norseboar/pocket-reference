@@ -20,6 +20,9 @@ body {
   text-overflow: ellipsis;
 }
 
+.page-title img {
+  margin-right: 5px;
+}
 .claim-text p {
   font-family: 'Raleway';
   font-weight: 800;
