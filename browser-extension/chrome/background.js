@@ -1,8 +1,8 @@
 // Create context menu item
 var id = 'pocket-reference';
-var POCKET_REFERENCE_URL = 'http://localhost:3000';
+// var POCKET_REFERENCE_URL = 'http://localhost:3000';
 
-// var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
+var POCKET_REFERENCE_URL = 'https://pocket-reference.herokuapp.com';
 var add_url = POCKET_REFERENCE_URL + '/api/add_claim';
 
 chrome.contextMenus.create({
