@@ -89,34 +89,36 @@ module.exports = function (passport){
     if(req.isAuthenticated()){
       var claimText = req.body.title;
       var claimUrl = req.body.url;
+
+      // http will be added to url if there is no header
+      var re = /^[A-Za-z]+:\/\//;
+      if(!claimUrl.match(re)) {
+        claimUrl = 'http://' + claimUrl;
+      }
+
       var parsedUrl = url.parse(claimUrl);
-
-      // Grab favicon of webpage as image
-      var faviconPrefix = 'http://www.google.com/s2/favicons?domain=';
-      var imgSrc = faviconPrefix + parsedUrl.hostname;
-
       // get title of web page
       // 'page' is used as a prefix to not be confused with overall
       // req and res objects
       request({
-        url: url.parse(claimUrl),
+        url: parsedUrl,
         jar: true
       }, function(pageErr, pageRes, pageBody) {
-        var pageParser = cheerio.load(pageBody);
-        var pageTitle = pageParser('title').text();
-        console.log('pageTitle is ' + pageTitle);
+        var pageTitle = '';
+        var imgSrc = '';
+        if(!pageErr) {
+          // Grab favicon of webpage as image
+          var faviconPrefix = 'http://www.google.com/s2/favicons?domain=';
+          imgSrc = faviconPrefix + parsedUrl.hostname;
+
+          var pageParser = cheerio.load(pageBody);
+          pageTitle = pageParser('title').text();
+        }
+
         if(!claimText || !claimUrl) {
-          console.log('about to return and ignore');
           res.json({status: 2, message: 'invalid claim'});
           return;
         }
-
-        // http will be added to url if there is no header
-        var re = /^[A-Za-z]+:\/\//;
-        if(!claimUrl.match(re)) {
-          claimUrl = 'http://' + claimUrl;
-        }
-
 
         var claim = new Claim();
         claim.claimText = claimText;
